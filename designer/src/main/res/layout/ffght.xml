@@ -31,30 +31,39 @@
   ~  *        |/_/         \===/
   ~  *                       =
   ~  *
-  ~  * Copyright(c) Developed by John Alves at 2019/8/31 at 9:32:43 for quantic heart studios
+  ~  * Copyright(c) Developed by John Alves at 2019/9/1 at 8:45:26 for quantic heart studios
   ~  */
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context=".MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/containerBannerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <com.quanticheart.core.bannerView.BannerView
-            android:id="@+id/bannerView"
+    <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vpBannerView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:bannerBackgroundColor="@color/colorPrimary"
+            android:layout_height="0dp"
+            android:layout_alignParentEnd="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:loadingBackgroundColor="@color/blue_primary_dark"
-            app:loadingColor="@color/amber_primary_dark"
-            app:showLoading="true"
-            app:indicatorDotsColor="@color/Color_Palet_Flat_CARROT"
-            app:indicatorDotsSelectedColor="@color/Color_Palet_Flat_SUN_FLOEWS"
-            app:showPageIndicator="true"/>
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.quanticheart.core.pageIndicatorView.PageIndicatorView
+            android:id="@+id/llBannerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:indicatorSize="10"
+            app:indicatorPosition="0"
+            app:layout_constraintBottom_toBottomOf="@+id/vpBannerView"
+            app:layout_constraintEnd_toEndOf="@+id/vpBannerView"
+            app:layout_constraintStart_toStartOf="@+id/vpBannerView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ /*
   ~  *                                     /@
   ~  *                      __        __   /\/
@@ -31,30 +31,11 @@
   ~  *        |/_/         \===/
   ~  *                       =
   ~  *
-  ~  * Copyright(c) Developed by John Alves at 2019/8/31 at 9:32:43 for quantic heart studios
+  ~  * Copyright(c) Developed by John Alves at 2019/8/31 at 9:33:52 for quantic heart studios
   ~  */
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context=".MainActivity">
-
-    <com.quanticheart.core.bannerView.BannerView
-            android:id="@+id/bannerView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:bannerBackgroundColor="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:loadingBackgroundColor="@color/blue_primary_dark"
-            app:loadingColor="@color/amber_primary_dark"
-            app:showLoading="true"
-            app:indicatorDotsColor="@color/Color_Palet_Flat_CARROT"
-            app:indicatorDotsSelectedColor="@color/Color_Palet_Flat_SUN_FLOEWS"
-            app:showPageIndicator="true"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.quanticheart.core">
+    <uses-permission android:name="android.permission.INTERNET"/>
+</manifest>

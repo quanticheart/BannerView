@@ -31,8 +31,17 @@
  *  *        |/_/         \===/
  *  *                       =
  *  *
- *  * Copyright(c) Developed by John Alves at 2019/8/31 at 9:33:52 for quantic heart studios
+ *  * Copyright(c) Developed by John Alves at 2019/9/7 at 2:9:50 for quantic heart studios
  *
  */
 
-include ':app', ':designer'
+package com.quanticheart.core.bannerView.action
+
+import com.quanticheart.core.bannerView.entity.Banner
+
+/**
+ * Interface for response data card
+ */
+interface BannerSwipeListener {
+    fun pageSelected(mPosition: Int, size: Int, bannerData: Banner)
+}

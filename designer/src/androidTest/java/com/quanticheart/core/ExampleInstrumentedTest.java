@@ -31,8 +31,33 @@
  *  *        |/_/         \===/
  *  *                       =
  *  *
- *  * Copyright(c) Developed by John Alves at 2019/8/31 at 9:33:52 for quantic heart studios
+ *  * Copyright(c) Developed by John Alves at 2019/8/31 at 9:33:53 for quantic heart studios
  *
  */
 
-include ':app', ':designer'
+package com.quanticheart.core;
+
+import android.content.Context;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static org.junit.Assert.*;
+
+/**
+ * Instrumented test, which will execute on an Android device.
+ *
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
+@RunWith(AndroidJUnit4.class)
+public class ExampleInstrumentedTest {
+    @Test
+    public void useAppContext() {
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getTargetContext();
+
+        assertEquals("com.quanticheart.banner.test", appContext.getPackageName());
+    }
+}

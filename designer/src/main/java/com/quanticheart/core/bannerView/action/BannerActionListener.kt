@@ -31,8 +31,12 @@
  *  *        |/_/         \===/
  *  *                       =
  *  *
- *  * Copyright(c) Developed by John Alves at 2019/8/31 at 9:33:52 for quantic heart studios
+ *  * Copyright(c) Developed by John Alves at 2019/9/1 at 9:22:45 for quantic heart studios
  *
  */
 
-include ':app', ':designer'
+package com.quanticheart.core.bannerView.action
+
+interface BannerActionListener {
+    fun onClickListener()
+}

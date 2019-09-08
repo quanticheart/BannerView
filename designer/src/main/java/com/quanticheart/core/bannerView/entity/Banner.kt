@@ -31,8 +31,13 @@
  *  *        |/_/         \===/
  *  *                       =
  *  *
- *  * Copyright(c) Developed by John Alves at 2019/8/31 at 9:33:52 for quantic heart studios
+ *  * Copyright(c) Developed by John Alves at 2019/9/1 at 9:17:53 for quantic heart studios
  *
  */
 
-include ':app', ':designer'
+package com.quanticheart.core.bannerView.entity
+
+import com.quanticheart.core.bannerView.action.BannerActionListener
+
+@Suppress("unused", "UNUSED_PARAMETER")
+data class Banner(var imageLink: String, var actionListener: BannerActionListener? = null, var buttonText: String? = null)

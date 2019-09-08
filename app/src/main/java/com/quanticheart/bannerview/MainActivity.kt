@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.quanticheart.banner.action.BannerActionListener
-import com.quanticheart.banner.action.BannerSwipeListener
-import com.quanticheart.banner.entity.Banner
+import com.quanticheart.core.bannerView.action.BannerActionListener
+import com.quanticheart.core.bannerView.action.BannerSwipeListener
+import com.quanticheart.core.bannerView.entity.Banner
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
                 })
         )
         list.add(
-            Banner("https://stmed.net/sites/default/files/super-mario-odyssey-hd-wallpapers-33722-5625840.jpg",
+            Banner(
+                "https://stmed.net/sites/default/files/super-mario-odyssey-hd-wallpapers-33722-5625840.jpg",
                 object : BannerActionListener {
                     override fun onClickListener() {
                         Toast.makeText(applicationContext, "ButtonClick", Toast.LENGTH_LONG).show()
