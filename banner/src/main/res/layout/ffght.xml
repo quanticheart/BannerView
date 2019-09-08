@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /*
+  ~  *                                     /@
+  ~  *                      __        __   /\/
+  ~  *                     /==\      /  \_/\/
+  ~  *                   /======\    \/\__ \__
+  ~  *                 /==/\  /\==\    /\_|__ \
+  ~  *              /==/    ||    \=\ / / / /_/
+  ~  *            /=/    /\ || /\   \=\/ /
+  ~  *         /===/   /   \||/   \   \===\
+  ~  *       /===/   /_________________ \===\
+  ~  *    /====/   / |                /  \====\
+  ~  *  /====/   /   |  _________    /      \===\
+  ~  *  /==/   /     | /   /  \ / / /         /===/
+  ~  * |===| /       |/   /____/ / /         /===/
+  ~  *  \==\             /\   / / /          /===/
+  ~  *  \===\__    \    /  \ / / /   /      /===/   ____                    __  _         __  __                __
+  ~  *    \==\ \    \\ /____/   /_\ //     /===/   / __ \__  ______  ____ _/ /_(_)____   / / / /__  ____ ______/ /_
+  ~  *    \===\ \   \\\\\\\/   ///////     /===/  / / / / / / / __ \/ __ `/ __/ / ___/  / /_/ / _ \/ __ `/ ___/ __/
+  ~  *      \==\/     \\\\/ / //////       /==/  / /_/ / /_/ / / / / /_/ / /_/ / /__   / __  /  __/ /_/ / /  / /_
+  ~  *      \==\     _ \\/ / /////        |==/   \___\_\__,_/_/ /_/\__,_/\__/_/\___/  /_/ /_/\___/\__,_/_/   \__/
+  ~  *        \==\  / \ / / ///          /===/
+  ~  *        \==\ /   / / /________/    /==/
+  ~  *          \==\  /               | /==/
+  ~  *          \=\  /________________|/=/
+  ~  *            \==\     _____     /==/
+  ~  *           / \===\   \   /   /===/
+  ~  *          / / /\===\  \_/  /===/
+  ~  *         / / /   \====\ /====/
+  ~  *        / / /      \===|===/
+  ~  *        |/_/         \===/
+  ~  *                       =
+  ~  *
+  ~  * Copyright(c) Developed by John Alves at 2019/9/1 at 8:45:26 for quantic heart studios
+  ~  */
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/containerBannerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vpBannerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentEnd="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+            android:id="@+id/llBannerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/vpBannerView"
+            app:layout_constraintEnd_toEndOf="@+id/vpBannerView"
+            app:layout_constraintStart_toStartOf="@+id/vpBannerView"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
