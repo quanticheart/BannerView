@@ -48,7 +48,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import android.widget.ViewFlipper
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -84,11 +84,6 @@ internal class BannerAdapter(
     private lateinit var view: View
     private val bannerList: ArrayList<Banner> = ArrayList()
 
-    //
-    private var containerLoad: LinearLayout? = null
-    private var load: ProgressBar? = null
-    private var flipper: ViewFlipper? = null
-
     /**
      * @init add Payments Methods and verify Size in Page Model
      */
@@ -102,17 +97,17 @@ internal class BannerAdapter(
     override fun instantiateItem(container: ViewGroup, position: Int): View {
         view = LayoutInflater.from(container.context).inflate(R.layout.ffght_cell, container, false)
 
-        load = view.loadBannerView
-        containerLoad = view.containerLoadingBannerView
-        flipper = view.containerFlipper
+        val load = view.loadBannerView
+        val containerLayout = view.container
+        val containerLoad = view.containerLoadingBannerView
 
-        setLoad(showLoading)
-        setLoadingColor()
-        setLoadingBackgroundColor()
-        setBannerBackgroundColor()
+        setLoad(showLoading, containerLoad)
+        setLoadingColor(load)
+        setLoadingBackgroundColor(containerLoad)
+        setBannerBackgroundColor(containerLayout)
 
         //
-        val containerImg = view.viewBannerImgContainer
+//        val containerImg = view.viewBannerImgContainer
         val img = view.viewBannerImg
         val button = view.viewBannerButton
 
@@ -135,7 +130,7 @@ internal class BannerAdapter(
                         target: Target<Drawable>?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        setLoad(true)
+                        setLoad(true, containerLoad)
                         return false
                     }
 
@@ -146,7 +141,7 @@ internal class BannerAdapter(
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        setLoad(false)
+                        setLoad(false, containerLoad)
                         return false
                     }
                 })
@@ -163,7 +158,7 @@ internal class BannerAdapter(
             }
         } ?: run {
             button.visibility = View.GONE
-            containerImg.setOnClickListener {
+            img.setOnClickListener {
                 action?.onClickListener()
             }
         }
@@ -273,11 +268,11 @@ internal class BannerAdapter(
         this.showLoading = show
     }
 
-    private fun setLoad(show: Boolean) {
+    private fun setLoad(show: Boolean, flipper: LinearLayout?) {
         if (showLoading) {
-            flipper?.displayedChild = if (show) 0 else 1
+            flipper?.visibility = if (show) View.VISIBLE else View.GONE
         } else {
-            flipper?.displayedChild = 1
+            flipper?.visibility = View.GONE
         }
     }
 
@@ -290,7 +285,7 @@ internal class BannerAdapter(
         colorLoading = colorRes
     }
 
-    private fun setLoadingColor() {
+    private fun setLoadingColor(load: ProgressBar?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             load?.indeterminateDrawable?.colorFilter = BlendModeColorFilter(colorLoading, BlendMode.SRC_ATOP)
         } else {
@@ -304,7 +299,7 @@ internal class BannerAdapter(
         loadingBackgroundColor = colorRes
     }
 
-    private fun setLoadingBackgroundColor() {
+    private fun setLoadingBackgroundColor(containerLoad: LinearLayout?) {
         if (loadingBackgroundColor != -1) {
             containerLoad?.setBackgroundColor(loadingBackgroundColor)
         } else {
@@ -322,7 +317,7 @@ internal class BannerAdapter(
         bannerBackgroundColor = colorRes
     }
 
-    private fun setBannerBackgroundColor() {
+    private fun setBannerBackgroundColor(flipper: ConstraintLayout?) {
         if (bannerBackgroundColor != -1) {
             flipper?.setBackgroundColor(bannerBackgroundColor)
         } else {

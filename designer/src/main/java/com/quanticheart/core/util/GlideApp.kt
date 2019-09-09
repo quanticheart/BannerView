@@ -31,55 +31,14 @@
  *  *        |/_/         \===/
  *  *                       =
  *  *
- *  * Copyright(c) Developed by John Alves at 2019/8/31 at 9:33:52 for quantic heart studios
+ *  * Copyright(c) Developed by John Alves at 2019/9/8 at 7:21:55 for quantic heart studios
  *
  */
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
+package com.quanticheart.core.util
 
-android {
-    compileSdkVersion 29
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 
-
-    defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-}
-
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation "androidx.core:core-ktx:1.0.2"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'androidx.annotation:annotation:1.1.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-}
-repositories {
-    mavenCentral()
-}
+@GlideModule
+class GlideApp : AppGlideModule()

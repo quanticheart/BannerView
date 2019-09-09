@@ -52,7 +52,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:loadingBackgroundColor="@color/blue_primary_dark"
             app:loadingColor="@color/amber_primary_dark"
-            app:showLoading="true"
+            app:showLoading="false"
             app:indicatorDotsColor="@color/Color_Palet_Flat_CARROT"
             app:indicatorDotsSelectedColor="@color/Color_Palet_Flat_SUN_FLOEWS"
             app:showPageIndicator="true"/>
