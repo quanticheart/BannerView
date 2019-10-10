@@ -38,36 +38,25 @@
 <resources>
 
     <declare-styleable name="BannerView">
-        <attr name="showPageIndicator" format="boolean" />
-        <attr name="showLoading" format="boolean" />
-        <attr name="loadingColor" format="color|reference" />
-        <attr name="loadingBackgroundColor" format="color|reference" />
-        <attr name="bannerBackgroundColor" format="color|reference" />
+        <attr name="showPageIndicator" format="boolean"/>
+        <attr name="showLoading" format="boolean"/>
+        <attr name="loadingColor" format="color|reference"/>
+        <attr name="loadingBackgroundColor" format="color|reference"/>
+        <attr name="bannerBackgroundColor" format="color|reference"/>
 
-        <attr name="indicatorDotsColor" format="color|reference" />
-        <attr name="indicatorDotsSelectedColor" format="color|reference" />
+        <attr name="indicatorDotsColor" format="color|reference"/>
+        <attr name="indicatorDotsSelectedColor" format="color|reference"/>
 
-        <attr name="hintSearch" format="string" localization="suggested" />
-        <attr name="hintSearchColor" format="color|reference" />
-
-        <attr name="colorPrimary" format="color|reference" />
-        <attr name="colorSecondary" format="color|reference" />
-
-        <attr name="iconSearch" format="reference" />
-        <attr name="iconSearchColor" format="color|reference" />
-
-
-        <attr name="iconMic" format="reference" />
-        <attr name="iconMicColor" format="color|reference" />
-        <attr name="showIconMic" format="boolean" />
-
+        <attr name="autoCarousel" format="boolean"/>
+        <attr name="startCarouselTime" format="integer"/>
+        <attr name="restartCarouselTime" format="integer"/>
     </declare-styleable>
 
     <declare-styleable name="PageIndicatorView">
-        <attr name="indicatorSize" format="integer" />
-        <attr name="indicatorPosition" format="integer" />
-        <attr name="indicatorColor" format="color|reference" />
-        <attr name="indicatorSelectedColor" format="color|reference" />
+        <attr name="indicatorSize" format="integer"/>
+        <attr name="indicatorPosition" format="integer"/>
+        <attr name="indicatorColor" format="color|reference"/>
+        <attr name="indicatorSelectedColor" format="color|reference"/>
     </declare-styleable>
 
 </resources>

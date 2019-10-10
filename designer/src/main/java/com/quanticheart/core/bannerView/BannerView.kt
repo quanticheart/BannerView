@@ -42,14 +42,14 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.viewpager.widget.ViewPager
-import kotlinx.android.synthetic.main.ffght.view.*
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.viewpager.widget.ViewPager
 import com.quanticheart.core.R
 import com.quanticheart.core.bannerView.action.BannerSwipeListener
 import com.quanticheart.core.bannerView.adapter.BannerAdapter
 import com.quanticheart.core.bannerView.entity.Banner
 import com.quanticheart.core.pageIndicatorView.PageIndicatorView
+import kotlinx.android.synthetic.main.ffght.view.*
 
 @Suppress("DEPRECATION", "MemberVisibilityCanBePrivate")
 class BannerView @JvmOverloads constructor(
@@ -89,7 +89,7 @@ class BannerView @JvmOverloads constructor(
                 if (typedArray.hasValue(R.styleable.BannerView_loadingColor)) {
                     val i = typedArray.getColor(
                         R.styleable.BannerView_loadingColor,
-                        resources.getColor(android.R.color.black, null)
+                        resources.getColor(android.R.color.black)
                     )
                     setLoadingColor(i)
                 }
@@ -97,7 +97,7 @@ class BannerView @JvmOverloads constructor(
                 if (typedArray.hasValue(R.styleable.BannerView_loadingBackgroundColor)) {
                     val i = typedArray.getColor(
                         R.styleable.BannerView_loadingBackgroundColor,
-                        resources.getColor(android.R.color.white, null)
+                        resources.getColor(android.R.color.white)
                     )
                     setLoadingBackgroundColor(i)
                 }
@@ -108,7 +108,7 @@ class BannerView @JvmOverloads constructor(
                 if (typedArray.hasValue(R.styleable.BannerView_bannerBackgroundColor)) {
                     val i = typedArray.getColor(
                         R.styleable.BannerView_bannerBackgroundColor,
-                        resources.getColor(android.R.color.white, null)
+                        resources.getColor(android.R.color.white)
                     )
                     setBannerBackgroundColor(i)
                 }
@@ -124,7 +124,7 @@ class BannerView @JvmOverloads constructor(
                     setColorIndicator(
                         typedArray.getColor(
                             R.styleable.BannerView_indicatorDotsColor,
-                            context.resources.getColor(R.color.dot_disabled, null)
+                            context.resources.getColor(R.color.dot_disabled)
                         )
                     )
                 }
@@ -133,9 +133,24 @@ class BannerView @JvmOverloads constructor(
                     setColorIndicatorSelected(
                         typedArray.getColor(
                             R.styleable.BannerView_indicatorDotsSelectedColor,
-                            context.resources.getColor(R.color.dot_enabled, null)
+                            context.resources.getColor(R.color.dot_enabled)
                         )
                     )
+                }
+
+                /**
+                 * auto play
+                 */
+                if (typedArray.hasValue(R.styleable.BannerView_autoCarousel)) {
+                    autoCarousel(typedArray.getBoolean(R.styleable.BannerView_autoCarousel, true))
+                }
+
+                if (typedArray.hasValue(R.styleable.BannerView_startCarouselTime)) {
+                    startCarouselAfter(typedArray.getInt(R.styleable.BannerView_startCarouselTime, 5))
+                }
+
+                if (typedArray.hasValue(R.styleable.BannerView_restartCarouselTime)) {
+                    restartCarouselAfter(typedArray.getInt(R.styleable.BannerView_restartCarouselTime, 10))
                 }
 
             } finally {
@@ -179,6 +194,21 @@ class BannerView @JvmOverloads constructor(
 
     fun setColorIndicatorSelected(colorInt: Int) {
         indicatorView?.setColorIndicatorSelected(colorInt)
+    }
+
+    /**
+     * auto play
+     */
+    fun autoCarousel(show: Boolean) {
+        adapter?.setAutoPlay(show)
+    }
+
+    fun startCarouselAfter(time: Int) {
+        adapter?.setStartTime(time)
+    }
+
+    fun restartCarouselAfter(time: Int) {
+        adapter?.setRestartTime(time)
     }
 
     /**

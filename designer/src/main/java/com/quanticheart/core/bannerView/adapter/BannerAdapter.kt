@@ -43,6 +43,7 @@ import android.graphics.BlendModeColorFilter
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -83,6 +84,50 @@ internal class BannerAdapter(
      */
     private lateinit var view: View
     private val bannerList: ArrayList<Banner> = ArrayList()
+
+    //
+    private var autoPlay = true
+    private val counter = Handler()
+    private var currentPage = 0
+    private var timeStartAutoCarousel = 10
+    private var timeStartAutoCarouselAfterTouch = 15
+
+    /**
+     * Auto Play
+     */
+
+    private fun startCarousel() {
+        counter.post(startCarousel)
+    }
+
+    private val startCarousel = object : Runnable {
+        override fun run() {
+            viewPager?.currentItem = currentPage
+            counter.postDelayed(this, (timeStartAutoCarousel * 1000).toLong())
+            updateCurrentPage()
+        }
+    }
+
+    private val restartCarousel =
+        Runnable { counter.postDelayed(startCarousel, (timeStartAutoCarousel * 1000).toLong()) }
+
+    private fun updateCurrentPage() {
+        currentPage++
+        if (currentPage >= bannerList.size) {
+            currentPage = 0
+        }
+    }
+
+    private fun updateCurrentPageByPos(position: Int) {
+        currentPage = position
+    }
+
+    private var onTouchListener = View.OnTouchListener { _, _ ->
+        counter.removeCallbacks(startCarousel)
+        counter.removeCallbacks(restartCarousel)
+        counter.postDelayed(restartCarousel, (timeStartAutoCarouselAfterTouch * 1000).toLong())
+        false
+    }
 
     /**
      * @init add Payments Methods and verify Size in Page Model
@@ -211,9 +256,10 @@ internal class BannerAdapter(
          * Config Adapter for new Size Array
          */
         viewPager?.offscreenPageLimit = bannerList.size
-        viewPager?.currentItem = 0
         pageIndicator?.setIndicatiorSize(bannerList.size)
-        progressDots(0)
+        if (autoPlay) {
+            startCarousel()
+        }
     }
 
     /**
@@ -238,6 +284,7 @@ internal class BannerAdapter(
     private fun progressDots(position: Int) {
         pageIndicator?.setIndicatorPosition(position)
         callback?.pageSelected(position, bannerList.size, bannerList[position])
+        updateCurrentPageByPos(position)
     }
 
     /**
@@ -325,6 +372,22 @@ internal class BannerAdapter(
         }
     }
 
+    /**
+     * Auto play
+     */
+
+    fun setAutoPlay(autoPlay: Boolean) {
+        this.autoPlay = autoPlay
+    }
+
+    fun setStartTime(startAt: Int) {
+        timeStartAutoCarousel = startAt
+    }
+
+    fun setRestartTime(restartAt: Int) {
+        timeStartAutoCarouselAfterTouch = restartAt
+    }
+
     //==============================================================================================
     //
     // ** Config
@@ -336,20 +399,21 @@ internal class BannerAdapter(
      *
      */
     private fun setAdapterConfig() {
-        viewPager?.adapter = this
-        viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(p0: Int) =
-                enableDisableSwipeRefresh(p0 == ViewPager.SCROLL_STATE_IDLE, refresh)
+        viewPager?.apply {
+            adapter = this@BannerAdapter
+            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrollStateChanged(p0: Int) =
+                    enableDisableSwipeRefresh(p0 == ViewPager.SCROLL_STATE_IDLE, refresh)
 
-            override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}
+                override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}
 
-            override fun onPageSelected(p0: Int) = progressDots(p0)
-        })
-
+                override fun onPageSelected(p0: Int) = progressDots(p0)
+            })
+            setOnTouchListener(onTouchListener)
+        }
     }
 
     private fun enableDisableSwipeRefresh(enable: Boolean, refresh: SwipeRefreshLayout?) {
         refresh?.isEnabled = enable
     }
-
 }

@@ -72,7 +72,7 @@ class PageIndicatorView @JvmOverloads constructor(
                     setColorIndicator(
                         typedArray.getColor(
                             R.styleable.PageIndicatorView_indicatorColor,
-                            context.resources.getColor(R.color.dot_enabled, null)
+                            context.resources.getColor(R.color.dot_enabled)
                         )
                     )
                 }
@@ -81,7 +81,7 @@ class PageIndicatorView @JvmOverloads constructor(
                     setColorIndicatorSelected(
                         typedArray.getColor(
                             R.styleable.PageIndicatorView_indicatorSelectedColor,
-                            context.resources.getColor(R.color.dot_enabled, null)
+                            context.resources.getColor(R.color.dot_enabled)
                         )
                     )
                 }
@@ -92,8 +92,8 @@ class PageIndicatorView @JvmOverloads constructor(
         }
     }
 
-    private var colorIndicator: Int = context.resources.getColor(R.color.dot_disabled, null)
-    private var colorIndicatorSelected: Int = context.resources.getColor(R.color.dot_enabled, null)
+    private var colorIndicator: Int = context.resources.getColor(R.color.dot_disabled)
+    private var colorIndicatorSelected: Int = context.resources.getColor(R.color.dot_enabled)
 
     fun setColorIndicator(colorInt: Int) {
         colorIndicator = colorInt
